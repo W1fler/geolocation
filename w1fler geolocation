@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Título da Página</title>
+    <!-- Adicione o link para o CSS do Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        /* Defina a altura do div que conterá o mapa */
+        #map {
+            height: 400px;  /* altura do mapa */
+            width: 100%;    /* largura do mapa */
+        }
+    </style>
+</head>
+<body>
+    <h1>Mapa com Leaflet</h1>
+    <div id="map"></div>
+
+    <!-- Adicione o script para o JavaScript do Leaflet -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Função para inicializar o mapa com Leaflet
+        function initMap() {
+            // Opções para o mapa
+            var options = {
+                center: [-23.55052, -46.633308],  // Coordenadas de São Paulo, Brasil
+                zoom: 13  // Nível de zoom
+            };
+
+            // Cria o mapa com Leaflet
+            var map = L.map('map', options);
+
+            // Adiciona uma camada de mapa (OpenStreetMap)
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+
+            // Adiciona um marcador ao mapa
+            L.marker([-23.55052, -46.633308]).addTo(map)
+                .bindPopup('São Paulo, Brasil')
+                .openPopup();
+        }
+
+        // Chama a função de inicialização do mapa quando a página é carregada
+        window.onload = initMap;
+    </script>
+</body>
+</html>
